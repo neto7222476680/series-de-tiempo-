@@ -1,0 +1,54 @@
+
+aa<-AirPassengers
+plot(aa)
+plot(aggregate(aa))###quita los picos y estacionalidad , para ver mas clara la tendencia d la serie
+boxplot(aa~cycle(aa))###muestra tendencia y datos por año 
+##te la da por mesees 
+
+deso<- read.csv("C://Users//USUARIO//Desktop//deso.csv")
+desots <-ts(deso, frequency = 4,start = 2005)
+deseanual <- aggregate(desots)/4
+x11()##abrir una ventana 
+layout(1:2)## una ventana con dos graficas 
+plot(desots)
+plot (deseanual)
+deso1<- window(desots,start = c(2008,2),end =c(2015,4))##c es para empezar un año y trimestre 
+##acorta el window a la serie de tiempo en un tiempo.
+
+ejercicio <- read.csv("C://Users//USUARIO//Desktop//ejercicio.csv")
+
+parcialts<- ts(ejercicio[,1],frequency = 4,start=2005)
+asalariadosts <- ts(ejercicio[,2],frequency = 4,start = 2005)
+tillts<- ts(ejercicio[,3],frequency = 4,start = 2005)
+###llamar a cada columna de la base de datos , es deci un solo vector 
+multiple <- ts.intersect(parcialts,asalariadosts,tillts)
+plot (multiple)### juntamos la serie de tiempo 
+### ejercicio 
+
+
+##ontengan (de donde quieran ) 4 series de tiempo minimo 30 datos 
+###las series de tiempo tienen sustento para compararlas
+
+#una vez
+ejercicio2 <-read.csv("C://Users//USUARIO//Desktop//ejercicio2.csv")
+desocupacionts<- ts(ejercicio2[,1],frequency=4,start = 2005)
+subocupacionts<- ts(ejercicio2[,2],frequency=4,start = 2005)
+informalts<- ts(ejercicio2[,3],frequency=4,start = 2005)
+laboralts<- ts(ejercicio2[,4],frequency=4,start = 2005)
+multiple <- ts.intersect(desocupacionts,subocupacionts,informalts,laboralts)
+plot(multiple)
+ejercicio22<- window(informalts,start = c(2008,2),end =c(2015,4))
+ejercicio22<- window(informalts,start = c(2009,2),end =c(2014,4))
+ejercicio22<- window(informalts,start = c(2010,2),end =c(2013,4))
+ejercicio22<- window(laboralts,start = c(2008,2),end =c(2015,4))
+ejercicio22<- window(laboralts,start = c(2009,2),end =c(2015,3))
+ejercicio22<- window(laboralts,start = c(2011,2),end =c(2014,4))
+
+tendencia <- aggregate(informalts)/4
+plot(laboralts)
+plot(aggregate(laboralts))###quita los picos y estacionalidad , para ver mas clara la tendencia d la serie
+boxplot(laboralts~cycle(laboralts))
+plot(informalts)
+plot(aggregate(informalts))###quita los picos y estacionalidad , para ver mas clara la tendencia d la serie
+boxplot(informalts~cycle(informalts))
+
