@@ -1,0 +1,73 @@
+21 febrero
+Series de tiempo 
+MEDIA, COVARIANZA Y CORRELACION EN SERIES DE TIEMPO 
+El valor esperado (E) de una variable o función es el valor medio de un conjunto de observaciones.
+Entonces (E), se define como la media de x y se denota por m 
+M=E(X)
+Además se conoce que E(x-m) ^2 es la media de las desviaciones cuadradas sobre M
+Las desviaciones estándar, representado por delta es la raíz cuadrada de la varianza entonces, si tenemos 2 variables (x, y), la varianza se puede generalizar mediante la covarianza  y producir cov(x, y)
+
+La covarianza se define de la siguiente manera 
+Cov= (xi-x) (yi-y)/n-1
+CORRELACION
+La correlación es una medida lineal de asociación entre un par de variables (x, y) y se obtiene mediante la estandarización de la covarianza   dividida por el producto de las desviaciones estándar de las variables 
+La correlación toma valores entre -1 y 1 con un valor de cero indicando que no existe asociación entre las variables.
+La correlación P entre un par de variables se define por:
+P(X, Y) = E(X-Mx) (Y-My)/dx dy
+La correlación cov es un valor estimado de P  y se calcula de la siguiente manera 
+Cor(x, y)=cov(x, y)/sd(x) sd (y)
+Ejemplo
+año	Partidos 	Canastas 
+2000	36	13
+2001	49	20
+2002	40	20
+2003	46	20
+2004	46	20
+2005	40	28
+2006	49	21
+2007	41	22
+2008	40	31
+Los procesos estocásticos y las series de tiempo 
+Un proceso estocástico se describe como una secuencia de datos que evolucionan en el tiempo .
+Las series de tiempo son un caso particular de los procesos estocásticos 
+
+Estacionariedad 
+Hacer inferencia estadística sobre la estructura de un proceso estocástico se debe basar en las observaciones de ese proceso, en este sentido se realizan algunos supuesto  sobre ese proceso, para las series de tiempo, una de los principales supuesto que debe hacer en los procesos estocásticos es la estacionariedad 
+La idea básica de la est.
+Es que las leyes de probabilidad que rigen el comportamiento del proceso no cambian con el tiempo.
+En otras palabras, a esto se le puede llamar equilibrio estadístico.
+La función de la media de un modelo de series de tiempo es 
+M (t)=E (Xt), en lo general esta es una función de t 
+El valor esperado en esta definición es un promedio del conjunto de todas las series de tiempo posibles en el modelo.
+Si se aplica un modelo de series de tiempo, se puede simular más de una st.
+Sin embargo con datos históricos usualmente solo se tiene una serie de tiempo
+En la práctica, se realizan estimaciones de tendencias y efectos estacionales de la st.
+Que se pueden eliminar para obtener una st con el componente aleatoria de tal forma que la st tenga una media constante que es lo más apropiado para pronosticar 
+Si en una st la media es una constante, entonces se define como una st estacionaria en la media 
+
+Varianza en st 
+La función de la varianza en una serie de tiempo que es estacionaria se define como 
+Delta ^2(t)=E ((Xt-M) ^2)
+Si se sabe que la serie de tiempo es estacionaria, la varianza puede ser estimada por:
+Var(x)=sumatoria (Xt-media) ^ {2/n-1
+En el análisis de st las observaciones pueden estar correlacionadas. Si la correlación es positiva.
+
+
+> x<-c(36,44,40,46,46,40,49,41,40)
+> y<-c(13,20,20,20,20,28,21,22,31)
+> covar <-sum((x-mean(x)*(y-mean(y))/n-1)
++ covar
+Error: unexpected symbol in:
+"covar <-sum((x-mean(x)*(y-mean(y))/n-1)
+covar"
+> cov(x,y)
+[1] 0.2916667
+> cor(x,y)
+[1] 0.01387132
+> n<-length(x)
+> covar<-sum((x-mean(x))*(y-mean(y)))/(n-1)
+> covar
+[1] 0.2916667
+> corr<-covar/(sd(x)*sd(y))
+> corr
+[1] 0.01387132
