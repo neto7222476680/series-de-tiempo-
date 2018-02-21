@@ -1,0 +1,51 @@
+scrib de r clase 12 febrero
+EG
+Ernrsto Socorro Gómez
+
+
+  Responder|
+lun 12/02, 04:47 p.m.
+Tú 
+###AirPassengers#
+AirPassengers
+
+
+install.packages("forecast")
+View (AirPassengers)
+Air
+
+help(AirPassengers)
+require(forecast)
+??AirPassengers
+class(AirPassengers)###preguntamos que tipo de datos es air passengers 
+start(AirPassengers)###preguntamos cuando inicia la ts 
+print(AirPassengers)## datos como matriz
+length(AirPassengers)### cuantos datos ahi 
+head(AirPassengers,n=8)###muestra los primeros 8 datos de la serie de tiempo
+tail(AirPassengers)
+tail(AirPassengers,n=8)
+plot(AirPassengers)###grafica##
+plot(AirPassengers,xlab="años",ylab="numero de pasajeros")
+plot(AirPassengers,xlab="años",ylab="numero de pasajeros",type="s")
+
+
+####ejercicio en clase
+##de la pagina del inegi bajar la tasa de informaidad laboral 
+#en valores relativos a nivel nacional, todos los trimestres 
+##desde 2005 al 2017
+##esta base la importan y declaran inicio fin y frecuencia de datos de la st
+#usar print , length , head ,tail (con 10 datos) , explicar datos y graficar 
+#tres colores , ademas investigar y usar funciones 
+#time ,deltat,cycle y frequency y explicar para que sirven 
+
+indicadores <-read.csv("C://Users//USUARIO//Desktop//indicadores.csv")
+indicadores 
+indicadores <-ts(indicadores,frequency = 4,start = (2005))
+print(indicadores)## datos como matriz
+length(indicadores)### cuantos datos ahi 
+head(indicadores,n=10)###muestra los primeros 8 datos de la serie de tiempo
+tail(indicadores)
+tail(indicadores,n=10)
+plot(indicadores)###grafica##
+plot(indicadores,xlab="años",ylab="numero de pasajeros")
+plot(indicadores,xlab="años",ylab="numero de pasajeros",type="s"
