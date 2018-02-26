@@ -1,0 +1,103 @@
+# series-de-tiempo-
+###clase 26 de febrero de 2018###
+##El modelo aditivo es más apropiado para las fluctuaciones estacionales, o las variaciones alrededor de la tendencia.
+
+#El modelo multiplicativo se aplica cuando exista una variación más proporcional en el patrón estacional o alrededor de la tendencia, con series económicas el modelo multiplicativo es más común o tro de sus usos es el transformar primero los datos hasta que la variación en la serie sea estable en el tiempo.
+##"Para descomponer una serie de tiempo se utilizan diversos métodos, por ejemplo la función decompose () en r.
+#Logra obtener 3 componentes  a través de la función calcula el componente tendencia utilizando medias más avilés,
+#La estacionalidad son promedios de los índices de estacionalidad  que se obtienen al desenraizar  la serie por el modelo elegido,
+#Por último el componente aleatorio se obtiene eliminando la tendencia y estacionalidad de la serie temporal.
+#El otro método de descomposición es la función Stl() que está basada en la regresión loess y consiste  una secuencia de dos aplicaciones  iteradas de regresión loess.
+#Para aplicar este método se debe especificar una frecuencia de muestreo  relacionada con el periodo de la componente estacional 
+
+install.packages("fpp")### bajamos la paqueteria 
+install.packages("forecast")
+require (fpp)##la mandamos llamar a la sesion 
+require (forecast)
+deso<-read.csv("C://Users//USUARIO//Desktop//deso.csv")
+tsdeso<-ts(deso,frequency = 4,start = 2005)
+tsdeso0<-ts(deso[1:52,],frequency = 4,start = 2005)
+#tsdeso1<-ts(as.vector())
+a0<-decompose (tsdeso0)
+names (a0)##que elementos tengo 
+
+a1<-stl(tsdeso0, s.window = 4)
+
+names (a1)
+a1$time.series##da todo los datos de la serie 
+x11()
+plot(tsdeso0,col="blue",
+     main ="desocupacion trimestral",
+     ylab="tasa de desocupados ",xlab="años")
+
+lines(a1$time.series[,2],col="red",ylab="tendencia")
+##le damos formato a la grafica 
+
+##la grafica muestra el componenete tendencia en rojo y 
+##los datos originales en azul
+##la tendencia muestra movimiento sobre toda la serie 
+##ignorando la estacionalidad y pequeñas fluctuaciones aleatorias.
+
+##estacionalidad ##
+
+
+monthplot(a1$time.series[,"seasonal"],main="",ylab="seasonal")
+### si el componenete estacional es limitado de la serie , vamos a quitar el ajuste estacional o desestacionalizar 
+##nuestra serie de tiemp 
+##si se tuviera aditivo 
+##ty-st
+##con muktiplicativo yt/st
+#####ajuste estacional (desestacionalizar )
+
+##se utiliza la funcion 
+
+##seasadj()
+
+#si la estacionalidad no es un elementpo prioritario#
+#entonses eliminar estacionalidad puede resultar benefico para el analisis 
+### 
+x11()
+plot(tsdeso0,col="brown",main="tasa de desocupacion",xlab="años",)
+lines(seasadj(a1),col="black",ylab"ajuste estacional")
+##3aggregar una linea a la serie de tiemp con un ajuste de desestacionalidad ##
+###se mantiene la tendencia pero sin muchos picos #####
+####ejercicio ###33
+
+
+
+### escoger una serie de tiempo y realicen lo sig.
+###descompongan la serie con stl y planteen esta descomposicion
+##uno de los datos que les aroje 
+### graficar el comportamiento  estacional y el componente tendencia 
+
+##(2 graficas9
+
+##utilizar la funcion lines 
+##3 eliminar el componente estacional y graficar 
+###333  comprobar en una ecuacion si el modelo aditivo eliminando estacionalidad 
+
+
+asal<-read.csv("C://Users//USUARIO//Desktop//asal.csv")
+tsasal<-ts(asal,frequency = 4,start = 2005)
+tsasal0<-ts(asal[1:52,],frequency = 4,start = 2005)
+e<-decompose (tsasal0)
+names (e)##que elementos tengo 
+
+e1<-stl(tsasal0, s.window = 4)
+names (e1)
+e1$time.series##da todo los datos de la serie 
+x11()
+plot(tsasal0,col="pink",
+     main ="desocupacion trimestral",
+     ylab="tasa de desocupados ",xlab="años")
+
+lines(e1$time.series[,2],col="orange",ylab="tendencia")
+##le damos formato a la grafica 
+
+##yt=tendencia + estacionalidad + error
+##ajuste estacional 
+##yt-st=tt +et
+#ecuacion 
+tsasal
+59.1-0.302326851=58.62752 +0.170151106
+58.79
