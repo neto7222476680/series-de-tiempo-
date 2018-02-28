@@ -1,0 +1,26 @@
+# series-de-tiempo-
+####3LOS PROMEDIOS MOVILES ###
+
+
+###3datos de crimenes de 1980 a2000
+##ejemplo
+install.packages("forecat")##3instalas pack
+require (forecast )### mandas llmar 
+
+crimi <-c(12632,13607,12106,13335,14553,14654,12791,11923,10225,9847) ##3 declaro vector de datos 
+
+tscrim <- ts(crimi ,start = 1980)##3 transformo a st 
+ma(tscrim,order=5)## orden impar va sacando promedios y se va moviendo 
+ma5crim<-c( NA, NA, 13246.6, 13651.0, 13487.8 ,13451.2, 12829.2, 11888.0   ,NA  , NA)
+macrim<-data.frame (crimi,ma5crim)#### data frame para juntar las tablas 
+View(macrim)##3 visualizar las tablas juntas 
+
+plot(tscrim,main="crimen mexico orden 5", ylab="millones de personas"
+     ,xlab="años") ##graficar con las estiquetas correspondientes 
+
+lines (ma(tscrim,5),col="red")
+##33posiciona la linea de suavizado para la grafica 
+
+###3aqui lo haremos para orden 3
+plot(tscrim , main="crimenes mexico orden 3",ylab="millones de personas",xlab="años")
+lines (ma(tscrim,3),col="pink")  #3# , una serie con muchoas cambios orden mas pequeño,cambio s bruscos orden mayor 
