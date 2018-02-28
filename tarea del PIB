@@ -1,0 +1,188 @@
+# series-de-tiempo-
+####Ejercicio de tarea  miércoles 28 de febrero 2018###
+
+#####Ernesto Socorro Gómez ###
+
+ 
+
+tspib <- ts(pib, start = 1961, end = 2016)
+
+plot(tspib, main="PIB 1961 - 2016", sub="Fuente: World Bank World Development Indicators", ylab= "Crecimiento Anual %")
+
+ 
+
+##1
+
+# la tasa de crecimiento de 8.2%
+
+x0<- 1972
+
+y0<- tspib[12]
+
+text(x0,y0,c("Tasa de creciemiento 8.2%"), cex=0.6, col= 1)
+
+ 
+
+# La deuda pública  19 602 millones para 1976
+
+33 813 millones en 1980 y 58 874 millones para 1982#####
+
+x1<- 1982
+
+y1<- tspib[22]
+
+text(x1,y1,c("Crisis de Mexicana la Deuda"), cex=0.6, col= 1)
+
+ 
+
+# suceso: petroleo
+
+x2<- 1979
+
+y2<-tspib[19]
+
+text(x2,y2,c("Auge Petrolero"), cex=0.6, col= 1)
+
+ 
+
+# 1987 Pacto de Solidaridad Económica con las políticas
+
+fiscal y monetaria restrictivas
+
+esto proboco una reducción de gastox3<- 1987
+
+y3<-tspib[27]
+
+text(x3,y3,c("Programa Solidaridad"), cex=0.6, col= 1)
+
+ 
+
+# banca privatizada
+
+ 
+
+x4<- 1992
+
+y4<-tspib[32]
+
+text(x4,y4,c("Privatiza Banca Mexicana"), cex=0.6, col= 1)
+
+ 
+
+# el gasto del gobierno aumento desmedidamente
+
+x5<- 1995
+
+y5<-tspib[35]
+
+text(x5,y5,c("Efecto Tequila"), cex=0.6, col= 1)
+
+ 
+
+ 
+
+ 
+
+#Las exportaciones petroleras 147 406.43 en 2001 a
+
+# 277 738.10 en 2004, y 410 382.50 en 2006.
+
+# La inflación promedio anual disminuyó, pasando de 6.36 en 2001 a 3.6 en 2006
+
+ 
+
+x6<- 2006
+
+y6<-tspib[46]
+
+text(x6,y6,c("Exp Petroleras"), cex=0.6, col= 1)
+
+ 
+
+# créditos otorgados a todos sectores  
+
+ 
+
+x7<- 2008
+
+y7<-tspib[48]
+
+text(x7,y7,c("Crisis 2008"), cex=0.6, col= 1)
+
+ 
+
+#####2
+
+# la tasa de crecimiento de 8.2%
+
+x0<- 1972
+
+y0<- tspib[12]
+
+legend(x0,y0,c("Tasa de creciemiento 8.2%"),bty="n",cex=0.7,pch=18, col= 15)
+
+ 
+
+# 2.1
+
+y1<- tspib[22]
+
+legend(x1,y1,c("Crisis de Mexicana la Deuda"),bty="n",cex=0.7,pch=18, col= 35)
+
+ 
+
+# 2.2
+
+x2<- 1979
+
+y2<-tspib[19]
+
+legend(x2,y2,c("Auge Petrolero"),bty="n" ,cex=0.7,pch=18, col= 45)
+
+ 
+
+# 2.3
+
+x3<- 1987
+
+y3<-tspib[27]
+
+legend(x3,y3,c("Programa Solidaridad"),bty="n",cex=0.2,pch=18, col= 18)
+
+ 
+
+# 2.4
+
+x4<- 1992
+
+y4<-tspib[32]
+
+legend(x4,y4,c("Privatiza Banca Mexicana"), bty="n",cex=0.2,pch=18, col= 29)
+
+ 
+
+# 2.5
+
+x5<- 1995
+
+y5<-tspib[35]
+
+legend(x5,y5,c("Efecto Tequila"), bty="n",cex=0.2,pch=18, col= 55)
+
+ 
+
+#2.6
+
+y6<-tspib[46]
+
+legend(x6,y6,c("Exp Petroleras"), bty="n",cex=0.2,pch=18, col= 65)
+
+ 
+
+# 2.7
+
+x7<- 2008
+
+y7<-tspib[48]
+
+legend(x7,y7,c("Crisis 2008"), bty="n",cex=0.2,pch=18, col= 88)
