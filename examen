@@ -1,0 +1,46 @@
+# series-de-tiempo-
+##genera 5 series de tiempo con nombre multiple1 
+
+###los rangos de estas series son rango 1 de de 15 a 35 
+##de 100 a 200 
+## de 29 a 49
+## de 42 a 162
+
+###las series de tiempo deben tener 250 mensuales  e inician en el tercer mes del año 1990
+##hacer estos datos como dataframe
+##generar cada una de las columnas en series de tiempo 
+## de la serie 1 , 2 series de tiempo  y dividenlas (con funcion en r )
+##en la serie 2 que vayan de 1990 a 2003 y de 1998 a 2006 y despues graficar 
+##dividir la serie 3 y 4 atraves de corchete desde la observacion 150a la 250
+##de dos series obtener y generar 2 dataframe de la tendencia y la estacionalidad .
+#1.simulacionde serie de tiempo 
+#vamos a simular indicadores ####
+## valor maximo , valor minimo , el numero de datos 
+## en este caso lo realix¿zamos con la poblacion de mexico
+#valor minimo sera 100, max 120 y 15 datos que inicie en año 2000.
+
+multiple1<- sample(15:35,250,replace= T)
+multiple2<- sample(100:200,250,replace= T)
+multiple3<- sample(29:49,250,replace = T)
+multiple4<- sample (42:162,250,replace = T)
+
+dataframe<- data.frame(multiple1,multiple2,multiple3,multiple4)
+serie1<- ts(dataframe[,1],frequency=12,start = c(1990,3))
+serie2<- ts(dataframe[,2],frequency=12,start = c(1990,3))
+serie3<- ts(dataframe[,3],frequency=12,start = c(1990,3))
+serie4<- ts(dataframe[,4],frequency=12,start = c(1990,3))
+#de la serie 1 y 2 dividirlas en (con funcion de r )
+serie1_1<-window (serie1,start=c(1990,3), end =2003)
+serie1_2<-window (serie1,start=1998, end =2006)
+plot(serie1_1)
+plot(serie1_2)
+#dividir la serie 3 y 4 en atrave3s de corchetes desde obs. 150 a 250
+##tendencia y estacionalidad 
+serie3[150:250]
+serie4[150:250]
+tend_est1<- stl(serie1, s.window = 12)
+tend_est2<- stl(serie2, s.window = 12)
+dataframe_1<- data.frame(tend_est1$time.series[,1],tend_est1$time.series[,2])
+dataframe_2<- data.frame(tend_est2$time.series[,1],tend_est2$time.series[,2])
+
+
