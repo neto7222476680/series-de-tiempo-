@@ -1,0 +1,64 @@
+# series-de-tiempo-
+#Series de tiempo  clase 07 de marzo 
+#Pronostico
+#Los métodos de predicción adecuadas dependen en gran medida de lo que se dispone de datos.
+#Dos tipos de pronósticos 
+#Cualitativos 
+#Cuantitativos
+#En este curso se verán pronósticos cuantitativos 
+#Las proyecciones cuantitativas se pueden aplicar cuando se cumplen dos condiciones:
+#  1.-informacion numérica sobre el pasado esta disponible 
+#2#.-razonable suponer que algunos aspectos de los patrones del pasado continuaran en el futuro.
+#Pronostico 
+#Predecir con la mayor precisión posible, teniendo en cuenta toda la información disponible e, incluidos los datos históricos y el conocimiento de cualquier evento futuro que puedan afectar a las previsiones.
+#Deben ser parte integral de las actividades de toma de decisiones y juegan  papel importante en áreas de las empresas, instituciones, etc.
+#Las organizaciones bien estructuradas requieren previsiones a corto, mediana y largo plazo dependiendo de los objetivos que se planteen.
+#Tipos de pronósticos 
+#L#os de corto plazo se utilizan en aspectos de producción y transporte 
+#El mediano plazo se asocia a compras, materias primas y compra de maquinaria 
+#Largo plazo se utilizan en la planificación de estrategia, tales como las oportunidades de mercado considerando factores ambientales  políticos, económicos y etc.
+
+
+#model de pronostico ingenuo---
+## se basa en la ultima de las observaciones nave(serie,h=num pronosticos)
+
+-------------------------------------------
+  ## media 
+ ## saca media de todsas las observaciones y ese considera 
+  #meanf(serie, h=numero de pronosticos)
+  -----------------------------------------------
+  ### ingenuo estacional
+  ##consiste en darle mayor peso al dato en el mismo año anterior , solo aplica con estacionalidad 
+  ##snave(serie,h=numero de pronosticos)
+  ----------------------------------------------
+  ##metodo de la deriva 
+  
+  ##dependiendo del promedio de datos historicos
+  
+  ##ejercicio pib
+  des0<-read.csv("C://Users//USUARIO//Desktop//tasa desocupacion.csv")
+  
+  dests<- ts(des0,start=2005, frequency = 4)
+  install.packages("fpp")
+  require (fpp)
+  desocomod1<-meanf(dests,h=10)
+  desocomod2<-naive(dests,h=10)
+  desocomod3<-snaive(dests,h=10)
+  desocomod4<-rwf(dests,h=10,drift = TRUE)
+  
+  ###ajustados 
+  x11()
+  plot(desocomod1,main="tasa de desocupacion trimestral",col="green")
+  lines(desocomod1$mean,col="green")
+  lines(desocomod2$fitted,col="black")#333# poner fitted nos da los datos ajustados 
+  lines(desocomod3$mean,col="pink")
+  lines(desocomod4$mean,col="orange")
+  legend("topleft",lty=1,col=c("green","black","orange"),
+  legend=c("media","ingenuo","ingenuo estacional","deriva"))
+  ##3###33
+  
+ names (desocomd1)
+ #3#3 ejercicio con una serie de tiemp  de bimbo al cierre 1 año atras
+ ## apliquen los 4 metodos pronosticos y graficar 
+ #segun el metodo elegir el mejor para pronosticar 
+## y tambien los datos ajustados y planteen segun su grafica cual es el metodo  que mejor ajusta a los reales . 
