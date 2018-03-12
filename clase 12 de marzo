@@ -1,0 +1,11 @@
+# series-de-tiempo-
+
+
+
+
+accidentes <-read.csv("C://Users//USUARIO//Desktop//ACCIDENTES.csv")
+
+accidentes <-data.frame(accidentes)## ver la base de datos, data frame
+accidentes1<-rbind(accidentes)[6:17,]##  nos da una matriz de la region que acotamos 
+
+c97<- cbind(accidentes1)[,2]
