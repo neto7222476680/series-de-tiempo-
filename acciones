@@ -1,0 +1,136 @@
+# series-de-tiempo-
+acciones <- read.csv("file:///C:/Users/azkam mora/Desktop/Series de tiempo/Acciones.csv") #bajar la base de datos
+
+##crear las series de tiempo
+Cemex<- ts(acciones[,1],start=c(2017,66),frequency = 252)
+Invex<- ts(acciones[,2],start=c(2017,66),frequency = 252)
+Tlvisa<- ts(acciones[,3],start=c(2017,66),frequency = 252)
+Bimbo<- ts(acciones[,4],start=c(2017,66),frequency = 252)
+Nflx<- ts(acciones[,5],start=c(2017,66),frequency = 252)
+Banorte <- ts(acciones[,6],start=c(2017,66),frequency = 252)
+require(fpp)
+
+#Pronosticos
+cemmod1 <- meanf(Cemex,h=50)
+cemmod2 <- naive(Cemex,h=50)
+cemmod3 <- snaive(Cemex,h=50)
+cemmod4 <- rwf(Cemex,h=50,drift=TRUE)
+
+invmod1 <- meanf(Invex,h=50)
+invmod2 <- naive(Invex,h=50)
+invmod3 <- snaive(Invex,h=50)
+invmod4 <- rwf(Invex,h=50,drift=TRUE)
+
+tlvmod1 <- meanf(Tlvisa,h=50)
+tlvmod2 <- naive(Tlvisa,h=50)
+tlvmod3 <- snaive(Tlvisa,h=50)
+tlvmod4 <- rwf(Tlvisa,h=50,drift=TRUE)
+
+bimmod1 <- meanf(Bimbo,h=50)
+bimmod2 <- naive(Bimbo,h=50)
+bimmod3 <- snaive(Bimbo,h=50)
+bimmod4 <- rwf(Bimbo,h=50,drift=TRUE)
+
+nflmod1 <- meanf(Nflx,h=50)
+nflmod2 <- naive(Nflx,h=50)
+nflmod3 <- snaive(Nflx,h=50)
+nflmod4 <- rwf(Nflx,h=50,drift=TRUE)
+
+Banmod1 <- meanf(Banorte,h=50)
+Banmod2 <- naive(Banorte,h=50)
+Banmod3 <- snaive(Banorte,h=50)
+Banmod4 <- rwf(Banorte,h=50,drift=TRUE)
+
+
+#GRAFICAR
+x11()
+par(mfrow=c(2,3))
+
+plot(cemmod1, main="Precios de Cerre CEMEXCPO (Cemex)",col="springgreen4")
+lines(cemmod1$mean,col="blueviolet")
+lines(cemmod2$mean,col="cadetblue4")
+lines(cemmod3$mean,col="magenta")
+lines(cemmod4$mean,col="deeppink2")
+legend("topleft",lty=1,col=c("blueviolet","cadetblue4","magenta","deeppink2"),legend = c("media","ingenuo","ingenuo estacional","deriva"))
+
+plot(invmod1, main="Precios de Cerre INVEXA (Invex)",col="springgreen4")
+lines(invmod1$mean,col="blueviolet")
+lines(invmod2$mean,col="cadetblue4")
+lines(invmod3$mean,col="magenta")
+lines(invmod4$mean,col="deeppink2")
+legend("topleft",lty=1,col=c("blueviolet","cadetblue4","magenta","deeppink2"),legend = c("media","ingenuo","ingenuo estacional","deriva"))
+
+plot(tlvmod1, main="Precios de Cerre TLEVISACPO (Televisa)",col="springgreen4")
+lines(tlvmod1$mean,col="blueviolet")
+lines(tlvmod2$mean,col="cadetblue4")
+lines(tlvmod3$mean,col="magenta")
+lines(tlvmod4$mean,col="deeppink2")
+legend("topleft",lty=1,col=c("blueviolet","cadetblue4","magenta","deeppink2"),legend = c("media","ingenuo","ingenuo estacional","deriva"))
+
+plot(bimmod1, main="Precios de Cerre BIMBOA (Bimbo)",col="springgreen4")
+lines(bimmod1$mean,col="blueviolet")
+lines(bimmod2$mean,col="cadetblue4")
+lines(bimmod3$mean,col="magenta")
+lines(bimmod4$mean,col="deeppink2")
+legend("topleft",lty=1,col=c("blueviolet","cadetblue4","magenta","deeppink2"),legend = c("media","ingenuo","ingenuo estacional","deriva"))
+
+plot(nflmod1, main="Precios de Cerre NFLX (Netflix)",col="springgreen4")
+lines(nflmod1$mean,col="blueviolet")
+lines(nflmod2$mean,col="cadetblue4")
+lines(nflmod3$mean,col="magenta")
+lines(nflmod4$mean,col="deeppink2")
+legend("topleft",lty=1,col=c("blueviolet","cadetblue4","magenta","deeppink2"),legend = c("media","ingenuo","ingenuo estacional","deriva"))
+
+plot(Banmod1, main="Precios de Cerre GFNORTEO (Banorte)",col="springgreen4")
+lines(Banmod1$mean,col="blueviolet")
+lines(Banmod2$mean,col="cadetblue4")
+lines(Banmod3$mean,col="magenta")
+lines(Banmod4$mean,col="deeppink2")
+legend("topleft",lty=1,col=c("blueviolet","cadetblue4","magenta","deeppink2"),legend = c("media","ingenuo","ingenuo estacional","deriva"))
+
+##########DATOS AJUSTADOS##########
+
+x11()
+par(mfrow=c(2,3))
+
+plot(cemmod1, main="Precios de Cerre CEMEXCPO (Cemex)",col="springgreen4")
+lines(cemmod1$fitted,col="blueviolet")
+lines(cemmod2$fitted,col="cadetblue4")
+lines(cemmod3$fitted,col="magenta")
+lines(cemmod4$fitted,col="deeppink2")
+legend("topleft",lty=1,col=c("blueviolet","cadetblue4","magenta","deeppink2"),legend = c("media","ingenuo","ingenuo estacional","deriva"))
+
+plot(invmod1, main="Precios de Cerre INVEXA (Invex)",col="springgreen4")
+lines(invmod1$fitted,col="blueviolet")
+lines(invmod2$fitted,col="cadetblue4")
+lines(invmod3$fitted,col="magenta")
+lines(invmod4$fitted,col="deeppink2")
+legend("topleft",lty=1,col=c("blueviolet","cadetblue4","magenta","deeppink2"),legend = c("media","ingenuo","ingenuo estacional","deriva"))
+
+plot(tlvmod1, main="Precios de Cerre TLEVISACPO (Televisa)",col="springgreen4")
+lines(tlvmod1$fitted,col="blueviolet")
+lines(tlvmod2$fitted,col="cadetblue4")
+lines(tlvmod3$fitted,col="magenta")
+lines(tlvmod4$fitted,col="deeppink2")
+legend("topleft",lty=1,col=c("blueviolet","cadetblue4","magenta","deeppink2"),legend = c("media","ingenuo","ingenuo estacional","deriva"))
+
+plot(bimmod1, main="Precios de Cerre BIMBOA (Bimbo)",col="springgreen4")
+lines(bimmod1$fitted,col="blueviolet")
+lines(bimmod2$fitted,col="cadetblue4")
+lines(bimmod3$fitted,col="magenta")
+lines(bimmod4$fitted,col="deeppink2")
+legend("topleft",lty=1,col=c("blueviolet","cadetblue4","magenta","deeppink2"),legend = c("media","ingenuo","ingenuo estacional","deriva"))
+
+plot(nflmod1, main="Precios de Cerre NFLX (Netflix)",col="springgreen4")
+lines(nflmod1$fitted,col="blueviolet")
+lines(nflmod2$fitted,col="cadetblue4")
+lines(nflmod3$fitted,col="magenta")
+lines(nflmod4$fitted,col="deeppink2")
+legend("topleft",lty=1,col=c("blueviolet","cadetblue4","magenta","deeppink2"),legend = c("media","ingenuo","ingenuo estacional","deriva"))
+
+plot(Banmod1, main="Precios de Cerre GFNORTEO (Banorte)",col="springgreen4")
+lines(Banmod1$fitted,col="blueviolet")
+lines(Banmod2$fitted,col="cadetblue4")
+lines(Banmod3$fitted,col="magenta")
+lines(Banmod4$fitted,col="deeppink2")
+legend("topleft",lty=1,col=c("blueviolet","cadetblue4","magenta","deeppink2"),legend = c("media","ingenuo","ingenuo estacional","deriva"))
