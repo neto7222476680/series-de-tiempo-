@@ -1,0 +1,33 @@
+# series-de-tiempo-
+accidentes <- read.csv("C://Users//Sala-H20//Documents//accidentes.csv")
+
+
+#eliminando columnas no es nesesario generar matriz
+#nesesitas utilizar  
+trs<-t(t(accidentes)) ##para convertit caracter sin modificar años de data 
+
+ctrs<-c(trs)#3genera array 
+
+accits<-ts(ctrs,frequency = 12,start = 1996)
+
+accits<-accidentes[6:17,-1]
+ctrs<-c(trs)#3genera array 
+install.packages("fpp")
+
+
+require (fpp)
+############################################################################################
+##suavizado exponencial simple (ses)
+x11()
+plot(accits)
+mod1<-ses(accits,alpha =.1,h=12)
+mod2<-ses(accits,alpha =.5 ,h=12
+          mod3<-ses(accits,alpha =.9  , h=12)        
+         
+names (mod1)
+plot (mod1,ylab="accidentes",xlab = "año",main = "numero de accidentes",type = "o")
+lines(mod1$mean ,col"green" ,type "o")
+lines(mod2$mean ,col"brown" ,type "o")
+lines(mod1$mean ,col"pink" ,type "o")
+ legend("topleft" ,lty=1, col=c("green","brown","pink"),c("datos originales",expression(alpha==.1),expression(alpha==.5),expression(==.9)),pch=1)
+
