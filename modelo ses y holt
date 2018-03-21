@@ -1,0 +1,27 @@
+# series-de-tiempo-
+
+pib <-read.csv("C://Users//USUARIO//Desktop//pib.csv"),
+header =F)## DATOS SIN ENCABEZADO 
+pibt <-ts (pib,start = 1960 ,frequency = 1)
+require(fpp)
+mod1 <- ses (pibt,alpha =.1, h=5)
+mod1$fitted
+pibt
+mod1 <- ses(pibt, initial = "simple", h =2)##y gorrito
+x11()
+plot(mod1)  
+lines(mod1$fitted)
+pibt
+mod1 <- ses(pibt, initial = "simple", h =2)
+mod2 <- holt(pibt,alpha = .8,beta = .5, initial = "simple"
+             , h =5)
+x11()
+plot(mod1)
+ lines(mod1$fitted ,col ="green")##agrega linea de la serie con modelo ajustado
+ lines(mod2$fitted ,col ="blue")## linea modelo 2 
+ 
+ lines(mod1$mean ,col ="green")
+ lines(mod2$fitted ,col ="blue")
+ 
+ 
+ 
