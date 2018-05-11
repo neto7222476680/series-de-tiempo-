@@ -1,0 +1,16 @@
+# series-de-tiempo-
+AirPassengers
+require(fpp)
+x11()
+plot(AirPassengers)
+adf.test(AirPassengers)
+Passengers)###ver si es estacionaria 
+aa <-auto.arima(AirPassengers)
+aa
+"lyung"##prueba de residuales ruido blanco
+bb<- hw(AirPassengers,h=12)##pronostico para serie de tiempo estacional 
+x11()
+plot(forecast(aa,h=12))
+x11()
+plot(forecast(bb))
+bb
