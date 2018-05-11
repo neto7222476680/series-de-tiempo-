@@ -1,0 +1,46 @@
+# series-de-tiempo-
+##ejercicio ##
+##bajar serie historica del salario minimo y la inflacion y realizar
+##pronostico con modelo holt lineal y arima no estacional 
+
+#2) de dos series estacionles aplicar modelos arima estacional y pronosticar series .
+
+salario<-read.csv("C://Users//USUARIO//Desktop//salario.csv")
+tssalario<-ts(salario,frequency = 12, start = 1990)
+require(fpp)
+###hotlineal
+mod1 <- ses (tssalario,alpha =.1, h=5)
+mod1$fitted
+tssalario
+mod1 <- ses(tssalario, initial = "simple", h =2)##y gorrito
+x11()
+plot(mod1)  
+lines(mod1$fitted)
+tssalario
+mod1 <- ses(tssalario, initial = "simple", h =2)
+mod2 <- holt(tssalario,alpha = .8,beta = .5, initial = "simple"
+             , h =5)
+x11()
+plot(mod1)
+lines(mod1$fitted ,col ="green")##agrega linea de la serie con modelo ajustado
+lines(mod2$fitted ,col ="blue")## linea modelo 2 
+
+lines(mod1$mean ,col ="green")
+lines(mod2$fitted ,col ="blue")
+
+##arima no estacional 
+
+
+##2) dos series las quew sean 
+
+asalariados<-read.csv("C://Users//USUARIO//Desktop//asalariados.csv")
+ asalariadosts<-ts(asalariados,frequency = 4,start = 2005)
+ 
+ install.packages("fpp")
+ require (fpp)
+ 
+ x11()
+ plot (asalariadosts)
+ tsdisplay (diff(asalariadosts,4))
+ tsdisplay (diff(diff(asalariadosts,4)))
+ mod<-Arima (asalariadosts,order=c(0,1,1),seasonal=c(0,1,1))
